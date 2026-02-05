@@ -1,0 +1,8 @@
+{
+  "name": "prosysIT - Hospitality Digital Solutions",
+  "description": "Premium IT services company specializing in digital transformation for restaurants, cafes, and hotels. Expert POS, QR menus, and management software.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
