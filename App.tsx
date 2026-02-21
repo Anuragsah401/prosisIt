@@ -4,6 +4,7 @@ import { GoogleGenAI } from "@google/genai";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
+import { LoadingScreen } from './components/LoadingScreen';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -16,6 +17,10 @@ import { Footer } from './components/FooterSection';
 export default function App() {
   const [aiTip, setAiTip] = useState<string>("Loading digital insight...");
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const [showLoadingScreen, setShowLoadingScreen] = useState<boolean>(() => {
+    // Check if user has visited before
+    return !localStorage.getItem('prosysIT_visited');
+  });
 
   useEffect(() => {
     async function fetchAiTip() {
@@ -42,9 +47,15 @@ export default function App() {
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <Router>
-      <LanguageProvider>
-        <div className={`min-h-screen p-4 md:p-8 selection:bg-amber-500 selection:text-black transition-colors duration-500`}>
+    <>
+      {showLoadingScreen && (
+        <LoadingScreen 
+          onLoadingComplete={() => setShowLoadingScreen(false)}
+        />
+      )}
+      <Router>
+        <LanguageProvider>
+          <div className={`min-h-screen md:p-8 selection:bg-amber-500 selection:text-black transition-colors duration-500`}>
           <div className="bento-container">
             
             <Navbar 
@@ -68,5 +79,6 @@ export default function App() {
         </div>
       </LanguageProvider>
     </Router>
+    </>
   );
 }

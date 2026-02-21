@@ -1,4 +1,5 @@
 import React from 'react';
+import { Mail, Linkedin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface TeamProps {
@@ -34,7 +35,7 @@ export function Team({ isDarkMode }: TeamProps) {
               <h3 className="text-3xl font-black tracking-tighter uppercase">{member.name || t(member.nameKey || '')}</h3>
               <p className={`font-bold uppercase tracking-widest text-xs mt-1 text-amber-500`}>{t(member.roleKey)}</p>
             </div>
-            <div className={`w-16 h-16 rounded-2xl overflow-hidden shadow-2xl border-2 ${isDarkMode ? 'border-white/20' : 'border-black/10'}`}>
+            <div className={`w-20 h-20 rounded-2xl overflow-hidden shadow-2xl border-2 ${isDarkMode ? 'border-white/20' : 'border-black/10'}`}>
               <img src={member.image} className="w-full h-full object-cover" alt={member.name} />
             </div>
           </div>

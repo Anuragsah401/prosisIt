@@ -19,7 +19,7 @@ export function Home({ isDarkMode }: HomeProps) {
         </div>
         <div className={`row-span-4 ${isDarkMode ? 'bg-[#8c8c8c]' : 'bg-gray-300'} rounded-bento p-10 flex flex-col justify-between border border-transparent relative overflow-hidden group transition-all duration-500`}>
           <div className="z-10">
-            <h1 className={`text-4xl md:text-5xl font-bold mb-6 leading-tight ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-clip leading-tight break-words ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {t('home.title')}
             </h1>
             <p className={`${isDarkMode ? 'text-white/80' : 'text-gray-700'} text-lg max-w-md mb-8 leading-relaxed`}>
