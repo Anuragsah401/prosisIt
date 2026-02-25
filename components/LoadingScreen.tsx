@@ -98,8 +98,8 @@ export const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
         setProgress(100);
         hideTimer = setTimeout(() => {
           setIsVisible(false);
-          // Mark as visited for future loads
-          localStorage.setItem('prosysIT_visited', 'true');
+          // Mark loading as shown for this session (persists on reload, cleared on tab close)
+          sessionStorage.setItem('prosysIT_loading_shown', 'true');
           onLoadingComplete();
         }, 300);
       } else {
@@ -113,8 +113,8 @@ export const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
       setProgress(100);
       hideTimer = setTimeout(() => {
         setIsVisible(false);
-        // Mark as visited for future loads
-        localStorage.setItem('prosysIT_visited', 'true');
+        // Mark loading as shown for this session (persists on reload, cleared on tab close)
+        sessionStorage.setItem('prosysIT_loading_shown', 'true');
         onLoadingComplete();
       }, 300);
     }, estimatedDuration + 2000);

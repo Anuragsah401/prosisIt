@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { AnimatedBox } from './AnimatedBox';
 
 interface TermsProps {
   isDarkMode: boolean;
@@ -15,11 +16,17 @@ export function Terms({ isDarkMode }: TermsProps) {
 
   return (
     <>
-      <div className={`${cardAccent} col-span-12 rounded-bento p-12 border border-transparent flex flex-col justify-center min-h-[300px] transition-all`}>
+      <AnimatedBox
+        className={`${cardAccent} col-span-12 rounded-bento p-12 border border-transparent flex flex-col justify-center min-h-[300px] transition-all`}
+        index={0}
+      >
         <h1 className={`text-6xl font-black ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-6 tracking-tighter`}>{t('terms.title')}</h1>
         <p className={`${isDarkMode ? 'text-white/80' : 'text-gray-800'} text-xl font-medium`}>{t('terms.subtitle')}</p>
-      </div>
-      <div className={`${cardPrimary} col-span-12 lg:col-span-8 rounded-bento p-12 border transition-all`}>
+      </AnimatedBox>
+      <AnimatedBox
+        className={`${cardPrimary} col-span-12 lg:col-span-8 rounded-bento p-12 border transition-all`}
+        index={1}
+      >
         <div className="mb-12">
             <h3 className={`text-3xl font-bold ${textTitle} mb-6`}>{t('terms.license')}</h3>
             <p className={`${textBody} text-lg leading-relaxed`}>
@@ -32,8 +39,11 @@ export function Terms({ isDarkMode }: TermsProps) {
               {t('terms.uptimeDesc')}
             </p>
         </div>
-      </div>
-      <div className={`${cardSecondary} col-span-12 lg:col-span-4 rounded-bento p-12 border flex flex-col justify-between transition-all`}>
+      </AnimatedBox>
+      <AnimatedBox
+        className={`${cardSecondary} col-span-12 lg:col-span-4 rounded-bento p-12 border flex flex-col justify-between transition-all`}
+        index={2}
+      >
         <div className="mb-12">
           <h3 className={`text-3xl font-bold ${textTitle} mb-6`}>{t('terms.billing')}</h3>
           <p className={`${textBody} text-lg`}>{t('terms.billingDesc')}</p>
@@ -42,7 +52,7 @@ export function Terms({ isDarkMode }: TermsProps) {
            <h3 className={`text-3xl font-bold ${textTitle} mb-6`}>{t('terms.support')}</h3>
            <p className={`${textBody} text-lg`}>{t('terms.supportDesc')}</p>
         </div>
-      </div>
+      </AnimatedBox>
     </>
   );
 }

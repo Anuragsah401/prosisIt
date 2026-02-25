@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { AnimatedBox } from './AnimatedBox';
 
 interface HomeProps {
   isDarkMode: boolean;
@@ -12,12 +13,18 @@ export function Home({ isDarkMode }: HomeProps) {
   return (
     <>
       <div className="col-span-12 lg:col-span-5 grid grid-rows-6 gap-4 h-[700px]">
-        <div className={`row-span-2 ${isDarkMode ? 'bg-[#2a2a2a] border-white/5' : 'bg-gray-100 border-gray-200'} rounded-bento p-10 flex items-center border transition-all duration-500`}>
+        <AnimatedBox
+          className={`row-span-2 ${isDarkMode ? 'bg-[#2a2a2a] border-white/5' : 'bg-gray-100 border-gray-200'} rounded-bento p-10 flex items-center border transition-all duration-500`}
+          index={0}
+        >
            <h2 className={`text-4xl md:text-5xl font-semibold leading-tight ${isDarkMode ? 'text-white/90' : 'text-gray-800'}`}>
              {t('home.secure')} <br />{t('home.automated')} <br />{t('home.global')}
            </h2>
-        </div>
-        <div className={`row-span-4 ${isDarkMode ? 'bg-[#8c8c8c]' : 'bg-gray-300'} rounded-bento p-10 flex flex-col justify-between border border-transparent relative overflow-hidden group transition-all duration-500`}>
+        </AnimatedBox>
+        <AnimatedBox
+          className={`row-span-4 ${isDarkMode ? 'bg-[#8c8c8c]' : 'bg-gray-300'} rounded-bento p-10 flex flex-col justify-between border border-transparent relative overflow-hidden group transition-all duration-500`}
+          index={1}
+        >
           <div className="z-10">
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-clip leading-tight break-words ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               {t('home.title')}
@@ -33,10 +40,13 @@ export function Home({ isDarkMode }: HomeProps) {
             </div>
           </div>
           <div className={`absolute -bottom-10 -right-10 text-[10rem] font-bold ${isDarkMode ? 'text-white/5' : 'text-black/5'} pointer-events-none select-none`}>pro</div>
-        </div>
+        </AnimatedBox>
       </div>
 
-      <div className="col-span-12 lg:col-span-7 h-[700px] relative rounded-bento overflow-hidden group shadow-2xl">
+      <AnimatedBox
+        className="col-span-12 lg:col-span-7 h-[700px] relative rounded-bento overflow-hidden group shadow-2xl"
+        index={2}
+      >
         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop" alt="Abstract Art" className="w-full h-full object-cover brightness-75 transition-transform duration-1000 group-hover:scale-110" />
         <div className={`absolute top-8 right-8 w-64 ${isDarkMode ? 'bg-white/90 backdrop-blur-xl' : 'bg-white/95'} rounded-[2rem] p-6 text-black animate-subtle shadow-2xl`}>
           <div className="w-full h-32 rounded-2xl mb-4 overflow-hidden">
@@ -52,7 +62,7 @@ export function Home({ isDarkMode }: HomeProps) {
              <button className="bg-amber-500 text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg shadow-amber-500/20">{t('home.connect')}</button>
           </div>
         </div>
-      </div>
+      </AnimatedBox>
     </>
   );
 }

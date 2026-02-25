@@ -13,13 +13,16 @@ import { TeamPage } from './pages/TeamPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
 import { Footer } from './components/FooterSection';
+import './styles/animations.css';
 
 export default function App() {
   const [aiTip, setAiTip] = useState<string>("Loading digital insight...");
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
   const [showLoadingScreen, setShowLoadingScreen] = useState<boolean>(() => {
-    // Check if user has visited before
-    return !localStorage.getItem('prosysIT_visited');
+    // Check if this is the first page load in this session
+    // sessionStorage is cleared when the tab is closed, but persists on page reload
+    const hasShownLoading = sessionStorage.getItem('prosysIT_loading_shown');
+    return !hasShownLoading;
   });
 
   useEffect(() => {

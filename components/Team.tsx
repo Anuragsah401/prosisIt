@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { AnimatedBox } from './AnimatedBox';
 
 interface TeamProps {
   isDarkMode: boolean;
@@ -22,32 +23,40 @@ export function Team({ isDarkMode }: TeamProps) {
 
   return (
     <>
-      <div className={`${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'} col-span-12 rounded-bento p-12 flex flex-col justify-center min-h-[300px] mb-4 shadow-2xl transition-all`}>
+      <AnimatedBox
+        className={`${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'} col-span-12 rounded-bento p-12 flex flex-col justify-center min-h-[300px] mb-4 shadow-2xl transition-all`}
+        index={0}
+      >
         <span className="text-amber-500 font-bold tracking-widest uppercase text-xs mb-4 block">{t('team.header')}</span>
         <h1 className="text-6xl font-black tracking-tighter leading-none uppercase">{t('team.title')} <br/>{t('team.titleAlt')}</h1>
         <p className="opacity-40 text-xl mt-6 max-w-2xl">{t('team.description')}</p>
-      </div>
+      </AnimatedBox>
       
       {members.map((member, i) => (
-        <div key={i} className={`${member.span} ${member.color} rounded-bento p-10 border group relative overflow-hidden flex flex-col justify-between h-[450px] transition-all shadow-xl`}>
-          <div className="flex justify-between items-start z-10">
-            <div>
-              <h3 className="text-3xl font-black tracking-tighter uppercase">{member.name || t(member.nameKey || '')}</h3>
-              <p className={`font-bold uppercase tracking-widest text-xs mt-1 text-amber-500`}>{t(member.roleKey)}</p>
+        <React.Fragment key={i}>
+          <AnimatedBox
+            className={`${member.span} ${member.color} rounded-bento p-10 border group relative overflow-hidden flex flex-col justify-between h-[450px] transition-all shadow-xl`}
+            index={i + 1}
+          >
+            <div className="flex justify-between items-start z-10">
+              <div>
+                <h3 className="text-3xl font-black tracking-tighter uppercase">{member.name || t(member.nameKey || '')}</h3>
+                <p className={`font-bold uppercase tracking-widest text-xs mt-1 text-amber-500`}>{t(member.roleKey)}</p>
+              </div>
+              <div className={`w-20 h-20 rounded-2xl overflow-hidden shadow-2xl border-2 ${isDarkMode ? 'border-white/20' : 'border-black/10'}`}>
+                <img src={member.image} className="w-full h-full object-cover" alt={member.name} />
+              </div>
             </div>
-            <div className={`w-20 h-20 rounded-2xl overflow-hidden shadow-2xl border-2 ${isDarkMode ? 'border-white/20' : 'border-black/10'}`}>
-              <img src={member.image} className="w-full h-full object-cover" alt={member.name} />
-            </div>
-          </div>
-          
-          <p className={`text-lg max-w-[200px] leading-snug z-10 opacity-60`}>
-            {t(member.descKey)}
-          </p>
+            
+            <p className={`text-lg max-w-[200px] leading-snug z-10 opacity-60`}>
+              {t(member.descKey)}
+            </p>
 
-          <div className="absolute -bottom-10 -right-10 text-[12rem] font-black opacity-[0.03] select-none pointer-events-none group-hover:scale-110 transition-transform duration-700">
-            {(member.name || t(member.nameKey || '')).split(' ')[0]}
-          </div>
-        </div>
+            <div className="absolute -bottom-10 -right-10 text-[12rem] font-black opacity-[0.03] select-none pointer-events-none group-hover:scale-110 transition-transform duration-700">
+              {(member.name || t(member.nameKey || '')).split(' ')[0]}
+            </div>
+          </AnimatedBox>
+        </React.Fragment>
       ))}
     </>
   );

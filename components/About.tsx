@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { AnimatedBox } from './AnimatedBox';
 
 interface AboutProps {
   isDarkMode: boolean;
@@ -15,7 +16,10 @@ export function About({ isDarkMode }: AboutProps) {
 
   return (
     <>
-      <div className={`col-span-12 lg:col-span-8 ${cardPrimary} rounded-bento p-12 border min-h-[500px] flex flex-col justify-center relative overflow-hidden transition-all duration-500`}>
+      <AnimatedBox
+        className={`col-span-12 lg:col-span-8 ${cardPrimary} rounded-bento p-12 border min-h-[500px] flex flex-col justify-center relative overflow-hidden transition-all duration-500`}
+        index={0}
+      >
         <div className={`absolute top-0 right-0 w-64 h-64 bg-amber-500/${isDarkMode ? '5' : '10'} blur-[120px]`}></div>
         <span className="text-amber-500 font-bold tracking-widest uppercase text-sm mb-6 block">{t('about.legacy')}</span>
         <h1 className={`text-5xl md:text-7xl font-bold ${textTitle} mb-8 leading-tight`}>
@@ -24,28 +28,40 @@ export function About({ isDarkMode }: AboutProps) {
         <p className={`${isDarkMode ? 'text-white/60' : 'text-gray-600'} text-xl max-w-2xl leading-relaxed`}>
           {t('about.description')}
         </p>
-      </div>
-      <div className={`col-span-12 lg:col-span-4 h-[500px] rounded-bento overflow-hidden relative border ${isDarkMode ? 'border-white/5' : 'border-gray-100'} group transition-all`}>
+      </AnimatedBox>
+      <AnimatedBox
+        className={`col-span-12 lg:col-span-4 h-[500px] rounded-bento overflow-hidden relative border ${isDarkMode ? 'border-white/5' : 'border-gray-100'} group transition-all`}
+        index={1}
+      >
         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-all duration-700" />
         <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? 'from-black' : 'from-gray-200'} via-transparent to-transparent`}></div>
         <div className="absolute bottom-10 left-10">
           <div className={`text-6xl font-black ${textTitle} mb-1`}>42+</div>
           <p className="text-amber-500 font-bold uppercase tracking-widest text-xs">{t('about.engineers')}</p>
         </div>
-      </div>
+      </AnimatedBox>
       <div className="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className={`${cardSecondary} p-12 rounded-bento border hover:translate-y-[-4px] transition-all`}>
+        <AnimatedBox
+          className={`${cardSecondary} p-12 rounded-bento border hover:translate-y-[-4px] transition-all`}
+          index={2}
+        >
           <h3 className={`text-3xl font-bold ${textTitle} mb-6`}>{t('about.mission')}</h3>
           <p className={`${textBody} text-lg`}>{t('about.missionDesc')}</p>
-        </div>
-        <div className={`${cardAccent} p-12 rounded-bento border border-transparent hover:translate-y-[-4px] transition-all`}>
+        </AnimatedBox>
+        <AnimatedBox
+          className={`${cardAccent} p-12 rounded-bento border border-transparent hover:translate-y-[-4px] transition-all`}
+          index={3}
+        >
           <h3 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-6`}>{t('about.vision')}</h3>
           <p className={`${isDarkMode ? 'text-white/80' : 'text-gray-700'} text-lg`}>{t('about.visionDesc')}</p>
-        </div>
-        <div className={`${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'} p-12 rounded-bento border border-transparent hover:translate-y-[-4px]  transition-all`}>
+        </AnimatedBox>
+        <AnimatedBox
+          className={`${isDarkMode ? 'bg-white text-black' : 'bg-gray-900 text-white'} p-12 rounded-bento border border-transparent hover:translate-y-[-4px]  transition-all`}
+          index={4}
+        >
           <h3 className="text-3xl font-bold mb-6">{t('about.values')}</h3>
           <p className={`font-medium text-lg italic opacity-70`}>{t('about.valuesDesc')}</p>
-        </div>
+        </AnimatedBox>
       </div>
     </>
   );
